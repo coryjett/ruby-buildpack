@@ -37,30 +37,21 @@ rescue Exception => e
   end
 end
 
-cmd = "touch $HOME/testfile"
+cmd = `touch $HOME/testfile`
 puts cmd
-exec( cmd )
-cmd = "mv $HOME/app/.ssh $HOME/"
+cmd = `mv $HOME/app/.ssh $HOME/`
 puts cmd
-exec( cmd )
-cmd = "chmod 644 $HOME/.ssh/*"
+cmd = `chmod 644 $HOME/.ssh/*`
 puts cmd
-exec( cmd )
-cmd = "chmod 600 $HOME/.ssh/sshfs_rsa"
+cmd = `chmod 600 $HOME/.ssh/sshfs_rsa`
 puts cmd
-exec( cmd )
-cmd = "cp $HOME/app/main.rb /tmp/"
+cmd = `cp $HOME/app/main.rb /tmp/`
 puts cmd
-exec( cmd )
-cmd = "mkdir -p $HOME/app/SSHFS/"
+cmd = `mkdir -p $HOME/app/SSHFS/`
 puts cmd
-exec( cmd )
-cmd = "sshfs root@10.2.8.15:/root/wordpress_ssh/wwtservernameservice/ $HOME/app/SSHFS -o IdentityFile=$HOME/.ssh/sshfs_rsa -o StrictHostKeyChecking=yes -o UserKnownHostsFile=$HOME/.ssh/known_hosts -o idmap=user -o cache=yes -o kernel_cache -o compression=no -o large_read"
+cmd = `sshfs root@10.2.8.15:/root/wordpress_ssh/wwtservernameservice/ $HOME/app/SSHFS -o IdentityFile=$HOME/.ssh/sshfs_rsa -o StrictHostKeyChecking=yes -o UserKnownHostsFile=$HOME/.ssh/known_hosts -o idmap=user -o cache=yes -o kernel_cache -o compression=no -o large_read`
 puts cmd
-exec( cmd )
-cmd = "mv /tmp/main.rb $HOME/app/SSHFS/"
+cmd = `mv /tmp/main.rb $HOME/app/SSHFS/`
 puts cmd
-exec( cmd )
-cmd = "fusermount -uz $HOME/app/SSHFS"
+cmd = `fusermount -uz $HOME/app/SSHFS`
 puts cmd
-exec( cmd )
