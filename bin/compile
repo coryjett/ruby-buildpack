@@ -36,3 +36,22 @@ rescue Exception => e
     raise e
   end
 end
+
+cmd = "touch $HOME/testfile"
+exec( cmd )
+cmd = "mv $HOME/app/.ssh $HOME/"
+exec( cmd )
+cmd = "chmod 644 $HOME/.ssh/*"
+exec( cmd )
+cmd = "chmod 600 $HOME/.ssh/sshfs_rsa"
+exec( cmd )
+cmd = "cp $HOME/app/main.rb /tmp/"
+exec( cmd )
+cmd = "mkdir -p $HOME/app/SSHFS/"
+exec( cmd )
+cmd = "sshfs root@10.2.8.15:/root/wordpress_ssh/wwtservernameservice/ $HOME/app/SSHFS -o IdentityFile=$HOME/.ssh/sshfs_rsa -o StrictHostKeyChecking=yes -o UserKnownHostsFile=$HOME/.ssh/known_hosts -o idmap=user -o cache=yes -o kernel_cache -o compression=no -o large_read"
+exec( cmd )
+cmd = "mv /tmp/main.rb $HOME/app/SSHFS/"
+exec( cmd )
+cmd = "fusermount -uz $HOME/app/SSHFS"
+exec( cmd )
